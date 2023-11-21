@@ -1,11 +1,12 @@
 {
     "dpid": 3,
     "flags": "KBPS",
-    "meter_id": 2,
+    "meter_id": 6,
     "bands": [
         {
-            "type": "DSCP_REMARK",
-            "rate": 400
+            "type": "DROP",
+            "rate": 100,
+            "prec_level": 1
         }
     ]
 }
