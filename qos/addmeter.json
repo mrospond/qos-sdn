@@ -1,0 +1,11 @@
+{
+    "dpid": 2,
+    "flags": "KBPS",
+    "meter_id": 1,
+    "bands": [
+        {
+            "type": "DROP",
+            "rate": 1000
+        }
+    ]
+}

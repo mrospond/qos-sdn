@@ -1,0 +1,18 @@
+{
+    "dpid": 3,
+    "table_id": 0,
+    "idle_timeout": 0,
+    "hard_timeout": 0,
+    "priority": 100,
+    "match":{
+        "ip_dscp": 10,
+        "eth_type": 2048
+    },
+    "actions":[
+        {
+            "type":"METER",
+            "meter_id": 2
+        }
+    ]
+}
+  

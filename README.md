@@ -100,6 +100,27 @@ AF11 class traffic transferred from each DS domain is guaranteed with 400Kbps ba
 than 400kbps is treated as excess traffic, and re-marked with AF12 class. However, it is still guaranteed that AF12
 class is more preferentially transferred than the best effort class
 ```
+# Meter Table curls:
+
+## QoS
+curl -X POST -d '{"match": {"ip_dscp": "0", "in_port": "2"}, "actions":{"queue": "1"}}' http://localhost:8080/qos/rules/0000000000000001 | jq
+curl -X POST -d '{"match": {"ip_dscp": "10", "in_port": "2"}, "actions":{"queue": "3"}}' http://localhost:8080/qos/rules/0000000000000001 | jq
+curl -X POST -d '{"match": {"ip_dscp": "12", "in_port": "2"}, "actions":{"queue": "2"}}' http://localhost:8080/qos/rules/0000000000000001 | jq
+curl -X POST -d '{"match": {"ip_dscp": "0", "in_port": "3"}, "actions":{"queue": "1"}}' http://localhost:8080/qos/rules/0000000000000001 | jq
+curl -X POST -d '{"match": {"ip_dscp": "10", "in_port": "3"}, "actions":{"queue": "3"}}' http://localhost:8080/qos/rules/0000000000000001 | jq
+curl -X POST -d '{"match": {"ip_dscp": "12", "in_port": "3"}, "actions":{"queue": "2"}}' http://localhost:8080/qos/rules/0000000000000001 | jq
+
+## meter entries
+curl -X POST -d '{"match": {"ip_dscp": "10"}, "actions":{"meter": "1"}}' http://localhost:8080/qos/rules/0000000000000002 | jq
+curl -X POST -d '{"meter_id": "1", "flags": "KBPS", "bands":[{"type":"DSCP_REMARK", "rate":"400", "prec_level": "1"}]}' http://localhost:8080/qos/meter/0000000000000002 | jq
+curl -X POST -d '{"match": {"ip_dscp": "10"}, "actions":{"meter": "1"}}' http://localhost:8080/qos/rules/0000000000000003 | jq
+curl -X POST -d '{"meter_id": "1", "flags": "KBPS", "bands":[{"type":"DSCP_REMARK", "rate":"400", "prec_level": "1"}]}' http://localhost:8080/qos/meter/0000000000000003 | jq
+
+## verify
+curl -X GET http://localhost:8080/qos/rules/0000000000000001
+curl -X GET http://localhost:8080/qos/rules/0000000000000002
+curl -X GET http://localhost:8080/qos/rules/0000000000000003
+
 ```
 
 ### flowmanager
