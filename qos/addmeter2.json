@@ -4,7 +4,7 @@
     "meter_id": 6,
     "bands": [
         {
-            "type": "DROP",
+            "type": "DSCP_REMARK",
             "rate": 100,
             "prec_level": 1
         }
