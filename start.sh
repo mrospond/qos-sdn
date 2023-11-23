@@ -17,10 +17,7 @@ start_session() {
 }
 
 kill_session() {
-    tmux kill-session -t $session 2> /dev/null
-    sudo mn -c
-    sudo pkill vlc
-    sudo pkill xterm
+    tmux kill-session -t $session #2> /dev/null
 }
 
 [ -z $1 ] &&

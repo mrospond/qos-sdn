@@ -24,7 +24,7 @@ exec(code)
 
 
 # Rate limit links to x Mbps
-bw = 7
+bw = 8
 link = customClass({'tc':TCLink}, f'tc,bw={bw}')
 
 class CustomTopo(Topo):
@@ -87,6 +87,9 @@ if __name__ == '__main__':
     h1.cmd('ip route add default via 172.16.10.1')
     h2.cmd('ip route add default via 172.16.20.2')
     h3.cmd('ip route add default via 172.16.30.1')
+
+    # h2.cmd('iperf3 -s -p 5201 & && iperf3 -s -p 5202 &') #--tos 26 && --tos BE
+    # h2.cmd('') #26
 
     # h1.cmd('iperf -s &')
     # result = h2.cmd('iperf -c 192.168.1.1')

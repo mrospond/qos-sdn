@@ -1,0 +1,6 @@
+h2 pkill iperf3
+h3 pkill iperf3
+h3 iperf3 -s -p 5201 &
+h3 iperf3 -s -p 5202 &
+h2 iperf3 -c 172.16.30.9 -p 5201 -b 4M -t 60 | tee ./results/iperf5201.txt &
+h2 iperf3 -c 172.16.30.9 -p 5202 -b 4M -t 60 | tee ./results/iperf5202.txt &
