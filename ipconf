@@ -1,0 +1,3 @@
+h1 ip route add default via 172.16.10.1
+h2 ip route add default via 172.16.20.2
+h3 ip route add default via 172.16.30.1
