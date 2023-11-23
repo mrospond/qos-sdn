@@ -5,8 +5,8 @@ from mininet.net import Mininet
 from mininet.node import RemoteController
 from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
-from mininet.util import customClass
-from mininet.link import TCLink
+from mininet.util import customClass, custom
+from mininet.link import TCLink, TCIntf
 from mininet.cli import CLI
 
 from time import sleep
@@ -24,7 +24,8 @@ exec(code)
 
 
 # Rate limit links to x Mbps
-link = customClass({'tc':TCLink}, 'tc,bw=10')
+bw = 7
+link = customClass({'tc':TCLink}, f'tc,bw={bw}')
 
 class CustomTopo(Topo):
 
@@ -68,9 +69,12 @@ if __name__ == '__main__':
     # # net.cmd('source ipconf')
     # net.stop()
 
+    intf = custom(TCIntf, bw=bw)
+    
     topo = CustomTopo()
     c1 = RemoteController('c1', ip='127.0.0.1')
-    net = Mininet(topo=topo, controller=c1)
+    net = Mininet(topo=topo, intf=intf, link=link, controller=c1)
+    # net = Mininet(topo=topo, link=link, controller=c1)
     net.start()
     sleep(5)
     # net.pingAll()
@@ -84,10 +88,10 @@ if __name__ == '__main__':
     h2.cmd('ip route add default via 172.16.20.2')
     h3.cmd('ip route add default via 172.16.30.1')
 
-    h1.cmd('iperf -s &')
-    result = h2.cmd('iperf -c 192.168.1.1')
-    print(result)
-    result = h1.cmd('ifconfig')
+    # h1.cmd('iperf -s &')
+    # result = h2.cmd('iperf -c 192.168.1.1')
+    # print(result)
+    result = h1.cmd('route -n')
     print(result)
     CLI(net)
     net.stop()
