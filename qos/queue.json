@@ -1,0 +1,16 @@
+{
+  "port_name": "s1-eth1",
+  "type": "linux-htb",
+  "max_rate": "1000000",
+  "queues": [
+    {
+      "max_rate": "1000000"
+    },
+    {
+      "min_rate": "200000"
+    },
+    {
+      "min_rate": "500000"
+    }
+  ]
+}
