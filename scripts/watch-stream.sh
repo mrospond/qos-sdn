@@ -1,3 +1,3 @@
 #!/bin/bash
 
-vlc-wrapper rtp://@10.0.0.2:5004 &
+vlc-wrapper rtp://@172.16.20.9:5004 &

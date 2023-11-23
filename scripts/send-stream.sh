@@ -8,5 +8,5 @@ fi
 
 su test
 
-#su test -c "cvlc -I dummy --loop \"$1\" --sout '#rtp{proto=udp,mux=ts,dst=10.0.0.2,port=5004}' &"
-vlc-wrapper -I "dummy" --loop $1 --sout "#rtp{proto=udp,mux=ts,dst=10.0.0.2,port=5004}" &
+#su test -c "cvlc -I dummy --loop \"$1\" --sout '#rtp{proto=udp,mux=ts,dst=172.16.20.9,port=5004}' &"
+vlc-wrapper -I "dummy" --loop $1 --sout "#rtp{proto=udp,mux=ts,dst=172.16.20.9,port=5004}" &
