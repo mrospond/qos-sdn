@@ -1,9 +1,0 @@
-{
-    "match":{
-      "ip_dscp": "0"
-    },
-    "actions": {
-		  "meter": "1"
-    }
- }
-  

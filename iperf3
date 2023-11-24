@@ -1,6 +1,13 @@
 h2 pkill iperf3
 h3 pkill iperf3
-h3 iperf3 -s -p 5201 &
-h3 iperf3 -s -p 5202 &
-h2 iperf3 -c 172.16.30.9 -p 5201 -b 4M -t 60 | tee ./results/iperf5201.txt &
-h2 iperf3 -c 172.16.30.9 -p 5202 -b 4M -t 60 | tee ./results/iperf5202.txt &
+
+h2 iperf3 -s -p 5004 &
+h1 iperf3 -c h2 -p 5004 -u -b 8M | tee ./results/iperf5004.txt &
+
+h2 iperf3 -s -p 5201 &
+h2 iperf3 -s -p 5202 &
+h1 iperf3 -c h2 -p 5201 -u -b 8M | tee ./results/iperf5201.txt &
+h3 iperf3 -c h2 -p 5202 -u -b 8M | tee ./results/iperf5202.txt &
+
+# h1 xterm -xrm "XTerm.vt100.allowTitleOps: false" -T "h1" &
+# h3 xterm -xrm "XTerm.vt100.allowTitleOps: false" -T "h3" &

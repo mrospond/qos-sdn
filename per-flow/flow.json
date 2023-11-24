@@ -1,0 +1,11 @@
+{
+    "match": {
+      "nw_dst": "10.0.0.1",
+      "nw_proto": "UDP",
+      "tp_dst": "5004"
+    },
+    "actions": {
+      "queue": "1"
+    }
+  }
+  

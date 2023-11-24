@@ -1,5 +1,6 @@
 *.mov
 *.m4v
+*.mp4
 
 #test
 capture.log

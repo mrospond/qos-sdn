@@ -9,22 +9,28 @@ IP_S2_ETH2="172.16.20.2/24" #s2-h2
 S1_GW="172.16.40.2"
 S2_GW="172.16.40.1"
 
-# setup ovs
-sudo ovs-vsctl set Bridge s1 protocols=OpenFlow13
-sudo ovs-vsctl set Bridge s2 protocols=OpenFlow13
-sudo ovs-vsctl set-manager ptcp:6632
+# set of13
+# set ovsdb_addr
+of() {
+    echo "setting of13 & ovsdb..."
+    sudo ovs-vsctl set Bridge s1 protocols=OpenFlow13
+    sudo ovs-vsctl set Bridge s2 protocols=OpenFlow13
+    sudo ovs-vsctl set-manager ptcp:6632
 
-# set s2 ovsdb_addr
-curl -X PUT -d '"tcp:127.0.0.1:6632"' http://localhost:8080/v1.0/conf/switches/0000000000000002/ovsdb_addr
+    curl -X PUT -d '"tcp:127.0.0.1:6632"' http://localhost:8080/v1.0/conf/switches/0000000000000001/ovsdb_addr
+    curl -X PUT -d '"tcp:127.0.0.1:6632"' http://localhost:8080/v1.0/conf/switches/0000000000000002/ovsdb_addr
+}
 
 # set queue on s2
 queue() {
-    curl -X POST -d '@queue.json' http://localhost:8080/qos/queue/0000000000000002
+    echo "setting queue..."
+    curl -X POST -d '@queue.json' http://localhost:8080/qos/queue/0000000000000002 &> /dev/null
     curl http://localhost:8080/qos/queue/0000000000000002 | jq
 }
 
-# router ip settings
+# set router ip
 ip() {
+    echo "setting ip..."
     curl -X POST -d "{\"address\": \"$IP_S1_ETH1\"}" http://localhost:8080/router/0000000000000001 &> /dev/null
     curl -X POST -d "{\"address\": \"$IP_S1_ETH2\"}" http://localhost:8080/router/0000000000000001 &> /dev/null
     curl -X POST -d "{\"address\": \"$IP_S1_ETH3\"}" http://localhost:8080/router/0000000000000001 &> /dev/null
@@ -34,9 +40,10 @@ ip() {
     curl -X POST -d "{\"gateway\": \"$S2_GW\"}" http://localhost:8080/router/0000000000000002 &> /dev/null
 
     # verify
-    curl -X GET http://localhost:8080/router/0000000000000001 | jq
-    curl -X GET http://localhost:8080/router/0000000000000002 | jq
+    curl http://localhost:8080/router/0000000000000001 | jq
+    curl http://localhost:8080/router/0000000000000002 | jq
 }
 
-# queue
+of
 ip
+queue

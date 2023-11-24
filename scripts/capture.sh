@@ -6,7 +6,6 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-
 interface=$1
 
 sudo tcpdump -i  $interface -n -tttt -q > $(dirname $0)/../results/capture-$interface.log & sleep 10
