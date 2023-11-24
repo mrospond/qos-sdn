@@ -14,8 +14,14 @@ sudo ovs-vsctl set Bridge s1 protocols=OpenFlow13
 sudo ovs-vsctl set Bridge s2 protocols=OpenFlow13
 sudo ovs-vsctl set-manager ptcp:6632
 
-# set ovsdb_addr
-curl -X PUT -d '"tcp:127.0.0.1:6632"' http://localhost:8080/v1.3/conf/switches/0000000000000001/ovsdb_addr &> /dev/null
+# set s2 ovsdb_addr
+curl -X PUT -d '"tcp:127.0.0.1:6632"' http://localhost:8080/v1.0/conf/switches/0000000000000002/ovsdb_addr
+
+# set queue on s2
+queue() {
+    curl -X POST -d '@queue.json' http://localhost:8080/qos/queue/0000000000000002
+    curl http://localhost:8080/qos/queue/0000000000000002 | jq
+}
 
 # router ip settings
 ip() {
@@ -32,4 +38,5 @@ ip() {
     curl -X GET http://localhost:8080/router/0000000000000002 | jq
 }
 
+# queue
 ip

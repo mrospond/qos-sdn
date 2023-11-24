@@ -1,0 +1,11 @@
+{
+    "meter_id": 2,
+    "flags": "KBPS",
+    "bands": [
+        {
+            "type": "DROP",
+            "rate": 400
+        }
+    ]
+ }
+ 

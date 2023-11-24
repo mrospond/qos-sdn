@@ -1,8 +1,7 @@
 #!/bin/bash
 
 diffserv(){
-    # add queue
-    curl -X POST -d '@queue.json' http://localhost:8080/qos/queue/0000000000000001 &> /dev/null
+
 
     # # match dscp with queue
     curl -X POST -d '@dscp26.json' http://localhost:8080/qos/rules/0000000000000002 &> /dev/null
@@ -30,12 +29,21 @@ limitbw(){
 
 }
 
+ratelimit() {
+    curl -X POST -d '@rate26.json' http://localhost:8080/qos/meter/0000000000000002 &> /dev/null
+    curl -X POST -d '@ratebe.json' http://localhost:8080/qos/meter/0000000000000002 &> /dev/null
+
+    curl -X POST -d '@matchlimit26.json' http://localhost:8080/qos/rules/0000000000000002 &> /dev/null
+    curl -X POST -d '@matchlimitbe.json' http://localhost:8080/qos/rules/0000000000000002 &> /dev/null
+}
+
+ratelimit
 # limitbw
-diffserv
+# diffserv
 
 
-curl -X GET http://localhost:8080/qos/meter/0000000000000001 | jq
-curl -X GET http://localhost:8080/qos/rules/0000000000000001 | jq
+curl -X GET http://localhost:8080/qos/meter/0000000000000002 | jq
+curl -X GET http://localhost:8080/qos/rules/0000000000000002 | jq
 
 
 sudo ovs-ofctl -O OpenFlow13 dump-meters s1
