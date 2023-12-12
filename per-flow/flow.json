@@ -1,6 +1,6 @@
 {
     "match": {
-      "nw_dst": "10.0.0.1",
+      "nw_dst": "10.0.0.2",
       "nw_proto": "UDP",
       "tp_dst": "5004"
     },

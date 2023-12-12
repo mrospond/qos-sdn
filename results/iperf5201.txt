@@ -1,19 +1,19 @@
 Connecting to host 172.16.20.9, port 5201
-[  5] local 172.16.10.9 port 41467 connected to 172.16.20.9 port 5201
+[  5] local 172.16.10.9 port 37974 connected to 172.16.20.9 port 5201
 [ ID] Interval           Transfer     Bitrate         Total Datagrams
-[  5]   0.00-1.00   sec   328 KBytes  2.69 Mbits/sec  232  
-[  5]   1.00-2.00   sec   270 KBytes  2.21 Mbits/sec  191  
-[  5]   2.00-3.00   sec   301 KBytes  2.47 Mbits/sec  213  
-[  5]   3.00-4.00   sec   297 KBytes  2.43 Mbits/sec  210  
-[  5]   4.00-5.00   sec   320 KBytes  2.62 Mbits/sec  226  
-[  5]   5.00-6.00   sec   274 KBytes  2.25 Mbits/sec  194  
-[  5]   6.00-7.00   sec   303 KBytes  2.48 Mbits/sec  214  
-[  5]   7.00-8.00   sec   300 KBytes  2.46 Mbits/sec  212  
-[  5]   8.00-9.26   sec  66.5 KBytes   433 Kbits/sec  47  
-[  5]   9.26-10.01  sec  14.1 KBytes   153 Kbits/sec  10  
+[  5]   0.00-1.00   sec   498 KBytes  4.07 Mbits/sec  352  
+[  5]   1.00-2.00   sec   452 KBytes  3.71 Mbits/sec  320  
+[  5]   2.00-3.00   sec   458 KBytes  3.75 Mbits/sec  324  
+[  5]   3.00-4.00   sec   366 KBytes  2.99 Mbits/sec  259  
+[  5]   4.00-5.00   sec   430 KBytes  3.53 Mbits/sec  304  
+[  5]   5.00-6.00   sec   387 KBytes  3.17 Mbits/sec  274  
+[  5]   6.00-7.00   sec   448 KBytes  3.67 Mbits/sec  317  
+[  5]   7.00-8.00   sec   452 KBytes  3.71 Mbits/sec  320  
+[  5]   8.00-9.00   sec   464 KBytes  3.80 Mbits/sec  328  
+[  5]   9.00-10.00  sec   450 KBytes  3.69 Mbits/sec  318  
 - - - - - - - - - - - - - - - - - - - - - - - - -
 [ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
-[  5]   0.00-10.01  sec  2.42 MBytes  2.02 Mbits/sec  0.000 ms  0/1749 (0%)  sender
-[  5]   0.00-12.77  sec  2.42 MBytes  1.59 Mbits/sec  63.519 ms  0/1749 (0%)  receiver
+[  5]   0.00-10.00  sec  4.30 MBytes  3.61 Mbits/sec  0.000 ms  0/3116 (0%)  sender
+[  5]   0.00-13.94  sec  4.30 MBytes  2.59 Mbits/sec  85.066 ms  0/3116 (0%)  receiver
 
 iperf Done.

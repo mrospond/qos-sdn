@@ -2,7 +2,7 @@
                                                                                              
 from mininet.topo import Topo
 from mininet.net import Mininet
-from mininet.node import RemoteController, Host, OVSSwitch
+from mininet.node import RemoteController
 from mininet.util import dumpNodeConnections
 from mininet.log import setLogLevel
 from mininet.util import customClass, custom
@@ -30,12 +30,12 @@ link = customClass({'tc':TCLink}, f'tc,bw={bw}')
 class CustomTopo(Topo):
 
     def build(self):
-        s1 = self.addSwitch('s1', cls=OVSSwitch, dpopts='', protocols="OpenFlow13")
-        s2 = self.addSwitch('s2', cls=OVSSwitch, dpopts='', protocols="OpenFlow13")
+        s1 = self.addSwitch('s1')
+        s2 = self.addSwitch('s2')
 
-        h1 = self.addHost('h1', ip='172.16.10.9/24')
-        h2 = self.addHost('h2', ip='172.16.20.9/24')
-        h3 = self.addHost('h3', ip='172.16.30.9/24')
+        h1 = self.addHost('h1', ip='10.0.0.1/24')
+        h2 = self.addHost('h2', ip='10.0.0.2/24')
+        h3 = self.addHost('h3', ip='10.0.0.3/24')
 
         self.addLink(h1, s1)
         self.addLink(h3, s1)
@@ -84,9 +84,9 @@ if __name__ == '__main__':
     h1, h2, h3 = net.get('h1', 'h2', 'h3')
     # h2 = net.get('h2')
     # h3 = net.get('h3')
-    h1.cmd('ip route add default via 172.16.10.1')
-    h2.cmd('ip route add default via 172.16.20.2')
-    h3.cmd('ip route add default via 172.16.30.1')
+    # h1.cmd('ip route add default via 172.16.10.1')
+    # h2.cmd('ip route add default via 172.16.20.2')
+    # h3.cmd('ip route add default via 172.16.30.1')
 
     # h2.cmd('iperf3 -s -p 5201 & && iperf3 -s -p 5202 &') #--tos 26 && --tos BE
     # h2.cmd('') #26
@@ -94,7 +94,7 @@ if __name__ == '__main__':
     # h1.cmd('iperf -s &')
     # result = h2.cmd('iperf -c 192.168.1.1')
     # print(result)
-    result = h1.cmd('route -n')
+    # result = h1.cmd('route -n')
     # print(result)
     CLI(net)
     net.stop()
