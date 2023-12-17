@@ -44,6 +44,6 @@ ip() {
     curl http://localhost:8080/router/0000000000000002 | jq
 }
 
-of
+# of
 ip
-queue
+# queue

@@ -8,6 +8,10 @@ diffserv(){
     # set dscp marking rules (match flow with dscp)
     curl -X POST -d '@flow26.json' http://localhost:8080/qos/rules/0000000000000001 &> /dev/null
     curl -X POST -d '@flow34.json' http://localhost:8080/qos/rules/0000000000000001 &> /dev/null
+
+    curl http://localhost:8080/qos/rules/0000000000000001 | jq
+    curl http://localhost:8080/qos/rules/0000000000000002 | jq
+
 }
 
 limitbw(){
@@ -38,5 +42,5 @@ ratelimit() {
 diffserv
 
 
-curl http://localhost:8080/qos/meter/0000000000000002 | jq
-curl http://localhost:8080/qos/rules/0000000000000002 | jq
+# curl http://localhost:8080/qos/meter/0000000000000002 | jq
+# curl http://localhost:8080/qos/rules/0000000000000002 | jq
