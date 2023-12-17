@@ -50,8 +50,9 @@ if __name__ == '__main__':
     
     topo = CustomTopo()
     c1 = RemoteController('c1', ip='127.0.0.1', protocols='OpenFlow13')
-    net = Mininet(topo=topo, intf=intf, link=link, controller=c1)
-    # net = Mininet(topo=topo, link=link, controller=c1)
+    # net = Mininet(topo=topo, intf=intf, link=link, controller=c1)
+    net = Mininet(topo=topo, link=link, controller=c1)
+    # net = Mininet(topo=topo, controller=c1)
     net.start()
 
     dumpNodeConnections(net.hosts)

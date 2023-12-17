@@ -45,12 +45,21 @@ sudo ovs-vsctl --timeout=5 set port dpdk1 qos=@myqos -- \
 https://docs.openvswitch.org/en/latest/faq/qos/
 
 ```
+sudo ovs-vsctl clear port s2-eth2 qos
 sudo ovs-vsctl -- --all destroy QoS -- --all destroy Queue
 
 sudo ovs-vsctl list QoS
 sudo ovs-vsctl list Queue
+sudo ovs-vsctl get port s2-eth2 qos
 ```
 list queues on a switch
 ```
 sudo ovs-ofctl queue-stats s2 -O OpenFlow13
+```
+
+### OVS
+```
+sudo service openvswitch-switch status
+sudo tail -f /var/log/openvswitch/ovs-vswitchd.log
+
 ```
