@@ -24,7 +24,7 @@ exec(code)
 
 
 # Rate limit links to x Mbps
-bw = 8
+bw = 2
 link = customClass({'tc':TCLink}, f'tc,bw={bw}')
 
 class CustomTopo(Topo):
