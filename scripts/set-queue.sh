@@ -7,11 +7,20 @@ ovs-vsctl -- --all destroy QoS -- --all destroy Queue
 
 ovs-vsctl set port s2-eth2 qos=@newqos -- \
 --id=@newqos create qos type=linux-htb \
-other-config:max-rate=8000000 \
+other-config:max-rate=4000000 \
 queues:1=@dupa1queue \
 queues:2=@dupa2queue -- \
---id=@dupa1queue create queue other-config:min-rate=500000 -- \
---id=@dupa2queue create queue other-config:min-rate=5000000
+--id=@dupa1queue create queue other-config:min-rate=3000000 -- \
+--id=@dupa2queue create queue other-config:min-rate=500000
+
+
+# ovs-vsctl set port s2-eth2 qos=@newqos -- \
+# --id=@newqos create qos type=linux-htb \
+# other-config:max-rate=4000000 \
+# queues:1=@dupa1queue \
+# queues:2=@dupa2queue -- \
+# --id=@dupa1queue create queue other-config:max-rate=4000000 -- \
+# --id=@dupa2queue create queue other-config:max-rate=4000000
 
 # ovs-vsctl set port s2-eth2 qos=@newqos -- \
 # --id=@newqos create qos type=linux-htb \

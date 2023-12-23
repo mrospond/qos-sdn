@@ -1,16 +1,16 @@
 {
   "port_name": "s2-eth2",
   "type": "linux-htb",
-  "max_rate": "8000000",
+  "max_rate": "5000000",
   "queues": [
     {
-      "max_rate": "8000000"
+      "max_rate": "5000000"
     },
     {
       "max_rate": "500000"
     },
     {
-      "min_rate": "5000000"
+      "min_rate": "4000000"
     }
   ]
 }

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ffplay "tcp://10.1.1.1:5004"
+ffplay "udp://172.16.20.9:5004"

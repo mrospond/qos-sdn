@@ -9,8 +9,6 @@ from mininet.util import customClass, custom
 from mininet.link import TCLink, TCIntf
 from mininet.cli import CLI
 
-# from time import sleep
-
 # Compile and run sFlow helper script
 # - configures sFlow on OVS
 # - posts topology to sFlow-RT
@@ -21,11 +19,6 @@ filename = '/home/test/sflow-rt/extras/sflow.py'
 with open(filename, "rb") as source_file:
     code = compile(source_file.read(), filename, "exec")
 exec(code)
-
-
-# Rate limit links to x Mbps
-bw = 2
-link = customClass({'tc':TCLink}, f'tc,bw={bw}')
 
 class CustomTopo(Topo):
 
@@ -42,16 +35,18 @@ class CustomTopo(Topo):
         self.addLink(s1, s2)
         self.addLink(h2, s2)
 
-
 if __name__ == '__main__':
     setLogLevel('info')
 
+    # Rate limit links to x Mbps
+    bw = 4
+    link = customClass({'tc':TCLink}, f'tc,bw={bw}')
     intf = custom(TCIntf, bw=bw)
     
     topo = CustomTopo()
     c1 = RemoteController('c1', ip='127.0.0.1', protocols='OpenFlow13')
-    # net = Mininet(topo=topo, intf=intf, link=link, controller=c1)
-    net = Mininet(topo=topo, link=link, controller=c1)
+    net = Mininet(topo=topo, intf=intf, link=link, controller=c1)
+    # net = Mininet(topo=topo, link=link, controller=c1)
     # net = Mininet(topo=topo, controller=c1)
     net.start()
 
