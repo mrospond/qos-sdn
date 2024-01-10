@@ -9,8 +9,8 @@ diffserv(){
     curl -X POST -d '@flow26.json' http://localhost:8080/qos/rules/0000000000000001 &> /dev/null
     curl -X POST -d '@flow34.json' http://localhost:8080/qos/rules/0000000000000001 &> /dev/null
 
-    curl http://localhost:8080/qos/rules/0000000000000001 | jq
-    curl http://localhost:8080/qos/rules/0000000000000002 | jq
+    curl -sS http://localhost:8080/qos/rules/0000000000000001 | jq
+    curl -sS http://localhost:8080/qos/rules/0000000000000002 | jq
 
 }
 

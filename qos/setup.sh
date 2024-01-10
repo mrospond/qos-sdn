@@ -40,8 +40,8 @@ ip() {
     curl -X POST -d "{\"gateway\": \"$S2_GW\"}" http://localhost:8080/router/0000000000000002 &> /dev/null
 
     # verify
-    curl http://localhost:8080/router/0000000000000001 | jq
-    curl http://localhost:8080/router/0000000000000002 | jq
+    curl -sS http://localhost:8080/router/0000000000000001 | jq
+    curl -sS http://localhost:8080/router/0000000000000002 | jq
 }
 
 # of
